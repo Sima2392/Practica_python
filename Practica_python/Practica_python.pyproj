@@ -21,10 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FifthApp.py" />
     <Compile Include="FirstApp.py" />
     <Compile Include="FourthApp.py" />
     <Compile Include="MainApp.py" />
     <Compile Include="SecondApp.py" />
+    <Compile Include="SevenApp.py" />
+    <Compile Include="SixApp.py" />
     <Compile Include="ThridApp.py" />
   </ItemGroup>
   <ItemGroup>

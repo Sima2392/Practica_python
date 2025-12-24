@@ -1,11 +1,14 @@
 # Импортируем модуль random для генерации случайных чисел
 import random
+import heapq
 
 import FirstApp
 import SecondApp
 import ThridApp
 import FourthApp
-
+import FifthApp
+import SixApp
+import SevenApp
 
 # Основной блок программы, который выполняется при запуске скрипта
 if __name__ == "__main__":
@@ -123,3 +126,116 @@ if __name__ == "__main__":
     # ВЫПОЛНЕНИЕ ЧЕТВЕРТОГО ЗАДАНИЯ 
 
     FourthApp.process_hash_table_sequence()
+
+    # ВЫПОЛНЕНИЕ ПЯТОГО ЗАДАНИЯ
+
+    print("="*50)
+    print("SEARCH SHOTEST MOVING ON LABIRINT")
+    print("ALG (BFS)")
+    print("="*50)
+    
+    # 1. Строим граф лабиринта
+    maze_graph = FifthApp.build_maze_graph()
+    
+    # 2. Визуализируем граф
+    FifthApp.visualize_graph(maze_graph)
+    
+    # 3. Задаем начальную и конечную точки
+    start_room = 'A'
+    end_room = 'J'
+        
+    # 4. Выполняем BFS для поиска кратчайшего пути
+    shortest_path = FifthApp.bfs_shortest_path(maze_graph, start_room, end_room)
+    
+    # 5. Выводим результат
+    print("\n3. RESULT:")
+    print("-" * 30)
+    
+    if shortest_path:
+        print(f"SHORTEST!")
+        print(f"DLINNA: {len(shortest_path) - 1} STEPS")
+        print(f"PUTb: {' -> '.join(shortest_path)}")
+        
+        # Дополнительная информация
+        print(f"\nDITAILS:")
+        for i in range(len(shortest_path) - 1):
+            print(f"  STEP {i+1}: {shortest_path[i]} -> {shortest_path[i+1]}")
+    else:
+        print(f" '{start_room}' TO '{end_room}' NOT EXIST!")
+    
+
+    # ВЫПОЛНЕНИЕ ШЕСТОГО ЗАДАНИЯ
+
+    # Предзаданные входные данные для задачи 1
+    n = 5
+    S = 1
+    F = 4
+
+    # Матрица смежности (5x5)
+    graph_matrix = [
+        [0, 10, -1, 30, 100],
+        [-1, 0, 50, -1, -1],
+        [-1, -1, 0, -1, 10],
+        [-1, -1, 20, 0, 60],
+        [-1, -1, -1, -1, 0]
+    ]
+
+    # Приводим к 0-индексации
+    s = S - 1
+    f = F - 1
+
+    # Выполнение алгоритма
+    result = SixApp.dijkstra(n, s, f, graph_matrix)
+    print(f"Shortest at {S} to {F}: {result}")
+
+
+    # Предзаданные входные данные для задачи 2
+    n = 5
+    prices = [10, 20, 5, 15, 30]  # Стоимость бензина в каждом городе
+    m = 5  # Количество дорог
+
+    # Дороги (каждая дорога соединяет два города)
+    roads_data = [
+        (1, 2),
+        (1, 3),
+        (2, 4),
+        (3, 4),
+        (4, 5)
+    ]
+
+    # Преобразуем дороги к 0-индексации
+    roads = [(u - 1, v - 1) for u, v in roads_data]
+
+    # Вычисление результата
+    result = SixApp.min_cost_path(n, prices, roads)
+    print(f"min price at first city to {n}: {result}")
+
+    # ВЫПОЛНЕНИЕ СЕДЬМОГО ЗАДАНИЯ
+
+
+    # Предзаданные входные данные для задачи 1
+    n1 = 5
+    requests1 = [
+        [1, 3],
+        [2, 5],
+        [4, 6],
+        [6, 7],
+        [5, 8]
+    ]
+
+    # Выполнение
+    result1 = SevenApp.max_lectures(n1, requests1)
+    print(f"Max count zayavok = {result1}")
+
+    # Предзаданные входные данные для задачи 2
+    n2 = 4
+    boxes2 = [
+        [10, 100],   # Вес 10, выдерживает 100
+        [20, 50],    # Вес 20, выдерживает 50
+        [30, 60],    # Вес 30, выдерживает 60
+        [40, 40]     # Вес 40, выдерживает 40
+    ]
+
+    # Выполнение
+    result2 = SevenApp.max_boxes(n2, boxes2)
+    print(f"MAX boxes = {result2}")
